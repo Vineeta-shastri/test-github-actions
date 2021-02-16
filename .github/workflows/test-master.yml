@@ -8,22 +8,19 @@ on:
     branches:
       - master
 jobs:
-  build_on_push:
+  build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
     - name: Run a one-line script
+      id: build_job
       run: echo Hello, world!
     - name: Run a multi-line script
+      id: test_job
       run: |
         echo Add other actions to build,
         echo test, and deploy your project.
-
-  build_on_pr:
-    if: github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - name: run if the pr is merged
+    - name: run if the pr is merged and build & test is sucessful
+      if: github.event.pull_request.merged == true && steps.build_job.outcome == 'success' && steps.test_job.outcome == 'success'
       run:
         echo PR is merged successfully
