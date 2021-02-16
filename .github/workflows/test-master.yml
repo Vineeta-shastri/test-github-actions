@@ -19,7 +19,7 @@ jobs:
       id: test_job
       run: |
         echo Add other actions to build,
-        eco test, and deploy your project.
+        echo test, and deploy your project.
     - name: run if the pr is merged and build & test is sucessful
       if: github.event.pull_request.merged == true && steps.build_job.outcome == 'success' && steps.test_job.outcome == 'success'
       run:
