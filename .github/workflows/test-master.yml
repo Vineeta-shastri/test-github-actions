@@ -1,12 +1,14 @@
 name: MasterCI
 on:
+  push:
+    branches:
+      - master
   pull_request:
     types: [ closed ]
-    branches: 
+    branches:
       - master
 jobs:
-  build:
-    if: github.event.pull_request.merged == true
+  build_on_push:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -16,6 +18,12 @@ jobs:
       run: |
         echo Add other actions to build,
         echo test, and deploy your project.
+
+  build_on_pr:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
     - name: run if the pr is merged
-      run: 
+      run:
         echo PR is merged successfully
