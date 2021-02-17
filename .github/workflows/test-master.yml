@@ -24,6 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build_test
     if: github.event.pull_request.merged == true && needs.build_test.result == 'success'
+    steps:
     - name: run if the pr is merged and build & test is sucessful
       run:
         echo PR is merged successfully
