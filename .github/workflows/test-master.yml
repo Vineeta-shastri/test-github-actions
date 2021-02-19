@@ -33,7 +33,7 @@ jobs:
        matrix:
           python-version: [3.8]
     needs: build_test
-    if: github.event.pull_request.merged == true && needs.build_test.result == 'failure'
+    #if: github.event.pull_request.merged == true && needs.build_test.result == 'success'
     steps:
     - name: run if the pr is merged and build & test is sucessful
       run:
