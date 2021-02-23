@@ -30,7 +30,7 @@ jobs:
        matrix:
           python-version: [3.8]
     needs: build_test
-    if: needs.build_test.result == 'success'
+    if: needs.build_test.result == 'failure'
     steps:
     - name: run if the pr is merged and build & test is sucessful
       run:
