@@ -40,4 +40,4 @@ jobs:
          echo "dicplay ${GITHUB_RUN_ID}"
     - name: display the ref
       run: |
-         echo "display ${GITHUB_REF}"
+         echo ${GITHUB_REF#refs/heads/}
