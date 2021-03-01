@@ -15,3 +15,9 @@ jobs:
       run: |
         echo "Only on feature branches1"
         echo "Only on feature branches2"
+    - name: display the id
+      run: |
+        echo "dicplay ${GITHUB_RUN_ID}"
+    - name: display the ref
+      run: |
+        echo "display ${GITHUB_REF}"

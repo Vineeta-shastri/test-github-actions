@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
        matrix:
-          python-version: [3.8, 3.9]
+          python-version: [3.8]
     steps:
     - uses: actions/checkout@v1
     - name: Set up Python ${{ matrix.python-version }}
@@ -30,8 +30,14 @@ jobs:
        matrix:
           python-version: [3.8]
     needs: build_test
-    if: needs.build_test.result == 'failure'
+    if: github.event.pull_request.merged == true && needs.build_test.result == 'success'
     steps:
     - name: run if the pr is merged and build & test is sucessful
       run:
         echo PR is merged successfully
+    - name: display the id
+      run: |
+         echo "dicplay ${GITHUB_RUN_ID}"
+    - name: display the ref
+      run: |
+         echo "display ${GITHUB_REF}"
