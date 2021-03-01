@@ -18,6 +18,7 @@ jobs:
     - name: display the id
       run: |
         echo "dicplay ${GITHUB_RUN_ID}"
+        echo ${{github.run_id}}
     - name: display the ref
       run: |
         echo ${GITHUB_REF#refs/heads/}
