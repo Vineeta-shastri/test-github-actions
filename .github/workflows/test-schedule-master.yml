@@ -22,4 +22,4 @@ jobs:
       run: |
         echo Add other actions to build,
         echo schedule job
-        echo on master
+        echo on test
