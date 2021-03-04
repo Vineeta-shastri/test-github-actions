@@ -1,7 +1,7 @@
 name: Schedule job
 on:
   schedule:
-     - cron: "* 12 * * *"
+     - cron: "*/5 * * * *"
 jobs:
   build_test:
     runs-on: ubuntu-latest
@@ -22,3 +22,4 @@ jobs:
       run: |
         echo Add other actions to build,
         echo schedule job
+        echo on master
