@@ -1,0 +1,30 @@
+name: Manual trigger
+on: [workflow_dispatch]
+jobs:
+  build_test:
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: display password
+      run: |
+        echo ${{github.event.inputs.password-trigger}}   
+
+  deploy:
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        python-version: [3.8]
+    needs: build_test
+    if: needs.build_test.result == 'success'
+    steps:
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
