@@ -1,17 +1,11 @@
 name: Manual trigger
-on: 
-  workflow_dispatch:
-    inputs:
-      password-trigger:
-        description: Enter the password to trigger the GHA
-        required: true
+on: [workflow_dispatch]
 jobs:
   build_test:
     runs-on: self-hosted
     strategy:
       matrix:
         python-version: [3.8]
-    if: github.event.inputs.password-trigger == 'password123'
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
