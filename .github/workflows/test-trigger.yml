@@ -2,7 +2,7 @@ name: Manual trigger
 on: [workflow_dispatch]
 jobs:
   build_test:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: [3.8]
@@ -17,7 +17,7 @@ jobs:
         echo ${{github.event.inputs.password-trigger}}   
 
   deploy:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: [3.8]
