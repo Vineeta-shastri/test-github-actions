@@ -6,15 +6,8 @@ on:
 jobs:
   build_test:
     runs-on: ubuntu-latest
-    strategy:
-       matrix:
-          python-version: [3.8, 3.9]
     steps:
     - uses: actions/checkout@v1
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
     - name: Run a one-line script
       id: build_job
       run: echo Hello, world!
@@ -25,9 +18,6 @@ jobs:
         echo test, and deploy your project.
   push_deploy:
     runs-on: ubuntu-latest
-    strategy:
-       matrix:
-          python-version: [3.8]
     needs: build_test
     if: needs.build_test.result == 'success'
     steps:
